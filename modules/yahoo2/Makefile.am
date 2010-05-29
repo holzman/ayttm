@@ -1,7 +1,5 @@
-SUBDIRS = libyahoo2
 
-AM_CFLAGS = $(GTK_CFLAGS) -Ilibyahoo2 -I$(top_srcdir)/src
-AM_CPPFLAGS = -DUSE_STRUCT_CALLBACKS=1
+AM_CFLAGS = $(GTK_CFLAGS) -I$(top_srcdir)/src
 
 if MINGW32
 WIN32_LDFLAGS = -no-undefined
@@ -11,7 +9,7 @@ endif
 pkglib_LTLIBRARIES = yahoo2.la
 yahoo2_la_SOURCES = yahoo.c
 
-yahoo2_la_LDFLAGS = -module -avoid-version $(WIN32_LDFLAGS)
-yahoo2_la_LIBADD = libyahoo2/*.lo $(WIN32_LIBADD)
+yahoo2_la_LDFLAGS = -module -avoid-version -lyahoo2 $(WIN32_LDFLAGS)
+
 # Gets rid of the datarootdir warning
 datarootdir=@datarootdir@

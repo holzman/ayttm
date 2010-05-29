@@ -73,9 +73,8 @@
 #include "mem_util.h"
 #include "video.h"
 
-#include "yahoo2.h"
-#include "yahoo2_callbacks.h"
-#include "yahoo_util.h"
+#include <libyahoo2/yahoo2.h>
+#include <libyahoo2/yahoo2_callbacks.h>
 #include "globals.h"
 
 #include "libproxy/networking.h"
@@ -116,7 +115,7 @@ static int do_prompt_save_file = 1;
 static int do_guess_away = 0;
 static int do_show_away_time = 0;
 
-static char pager_host[MAX_PREF_LEN] = "cs101.msg.sp1.yahoo.com";
+static char pager_host[MAX_PREF_LEN] = "scs.msg.yahoo.com";
 static char pager_port[MAX_PREF_LEN] = "5050";
 static char filetransfer_host[MAX_PREF_LEN] = "filetransfer.msg.yahoo.com";
 static char filetransfer_port[MAX_PREF_LEN] = "80";
@@ -284,10 +283,6 @@ static int reload_prefs()
 
 #define YAHOO_FONT_SIZE "size=\""
 
-#ifndef FREE
-#define FREE(x)	if(x) { g_free((void *)x); x=(void *)NULL; }
-#endif
-
 typedef struct {
 	int status;
 	int away;
@@ -300,9 +295,9 @@ static void free_yahoo_account(eb_yahoo_account_data *yad)
 	if (!yad)
 		return;
 	if (yad->status_message)
-		free(yad->status_message);
+		g_free(yad->status_message);
 
-	free(yad);
+	g_free(yad);
 }
 
 static void eb_yahoo_free_account_data(eb_account *account)
@@ -367,25 +362,25 @@ static void free_yahoo_local_account(eb_yahoo_local_account_data *yla,
 	int free_all)
 {
 	if (yla->status_message)
-		FREE(yla->status_message);
+		g_free(yla->status_message);
 
 	while (yla->webcams) {
 		struct webcam_feed *wf = yla->webcams->data;
 		YList *tmp = yla->webcams;
-		FREE(wf->who);
-		FREE(wf->buff);
+		g_free(wf->who);
+		g_free(wf->buff);
 		if (wf->image_window_tag) {
 			ay_image_window_close(wf->image_window_tag);
 			_image_window_closed(wf->image_window_tag, wf);
 		}
-		FREE(wf);
+		g_free(wf);
 
 		yla->webcams = y_list_remove_link(yla->webcams, yla->webcams);
 		y_list_free_1(tmp);
 	}
 
 	if (free_all)
-		free(yla);
+		g_free(yla);
 }
 
 typedef struct {
@@ -721,7 +716,7 @@ static void ext_yahoo_status_changed(int id, const char *who, int stat,
 	}
 
 	yad = ea->protocol_account_data;
-	FREE(yad->status_message);
+	g_free(yad->status_message);
 	old_state = yad->status;
 	yad->status = stat;
 	yad->away = away;
@@ -770,12 +765,12 @@ static void ext_yahoo_got_identities(int id, YList *ids)
 	for (; ids; ids = ids->next) {
 		i = g_new0(struct act_identity, 1);
 		i->id = id;
-		i->identity = strdup((char *)ids->data);
+		i->identity = g_strdup((char *)ids->data);
 		if (!ylad->act_id)
 			ylad->act_id = i->identity;
 		LOG(("got %s", i->identity));
 		snprintf(buff, sizeof(buff), "%s [Yahoo]", i->identity);
-		i->tag = eb_add_menu_item(strdup(buff), EB_PROFILE_MENU,
+		i->tag = eb_add_menu_item(g_strdup(buff), EB_PROFILE_MENU,
 			eb_yahoo_set_profile, ebmPROFILEDATA, i);
 		identities = y_list_append(identities, i);
 	}
@@ -1045,14 +1040,14 @@ static void eb_yahoo_accept_file(gpointer data, int result)
 	if (result) {
 		char *filepath, *tmp;
 
-		filepath = strdup(yftd->fname);
+		filepath = g_strdup(yftd->fname);
 
 		if (strchr(filepath, '?'))
 			*(strchr(filepath, '?')) = '\0';
 		tmp = strrchr(filepath, '/');
 		if (tmp) {
-			tmp = strdup(tmp + 1);
-			free(filepath);
+			tmp = g_strdup(tmp + 1);
+			g_free(filepath);
 			filepath = tmp;
 		}
 
@@ -1063,7 +1058,7 @@ static void eb_yahoo_accept_file(gpointer data, int result)
 		else
 			eb_yahoo_save_file(filepath, yftd);
 
-		free(filepath);
+		g_free(filepath);
 	} else {
 
 		yahoo_send_file_transfer_response(yftd->id, YAHOO_FILE_TRANSFER_REJECT,
@@ -1146,8 +1141,8 @@ static void eb_yahoo_got_fd(int id, void *fd, int error, void *data)
 	if (fd <= 0) {
 		WARNING(("yahoo_send_file returned (%d) %s", error,
 				strerror(error)));
-		FREE(yftd->fname);
-		FREE(yftd);
+		g_free(yftd->fname);
+		g_free(yftd);
 		return;
 	}
 
@@ -1290,7 +1285,7 @@ static void ext_yahoo_conf_userjoin(int id, const char *me, const char *who,
 		if (!strcmp(handle, who))
 			return;
 	}
-	ycrd->members = y_list_append(ycrd->members, strdup(who));
+	ycrd->members = y_list_append(ycrd->members, g_strdup(who));
 }
 
 static void ext_yahoo_conf_userleave(int id, const char *me, const char *who,
@@ -1316,8 +1311,8 @@ static void ext_yahoo_conf_userleave(int id, const char *me, const char *who,
 		if (!strcmp(handle, who)) {
 			YList *yl = (YList *)l;
 			ycrd->members = y_list_remove_link(ycrd->members, l);
-			FREE(handle);
-			FREE(yl);
+			g_free(handle);
+			g_free(yl);
 			break;
 		}
 	}
@@ -1348,8 +1343,8 @@ static void ext_yahoo_conf_userdecline(int id, const char *me, const char *who,
 		if (!strcmp(handle, who)) {
 			YList *yl = (YList *)l;
 			ycrd->members = y_list_remove_link(ycrd->members, l);
-			FREE(handle);
-			FREE(yl);
+			g_free(handle);
+			g_free(yl);
 			break;
 		}
 	}
@@ -1396,8 +1391,8 @@ static void ext_yahoo_got_conf_invite(int id, const char *me, const char *who,
 		"the topic is %s.\n\nDo you want to join?"), ela->handle, who, room, msg);
 
 	ycrd->id = id;
-	ycrd->host = strdup(who);
-	ycrd->room = strdup(room);
+	ycrd->host = g_strdup(who);
+	ycrd->room = g_strdup(room);
 	ycrd->members = members;
 	eb_do_dialog(buff, _("Yahoo Join Conference"),
 		eb_yahoo_accept_conference, ycrd);
@@ -1467,8 +1462,8 @@ static void ext_yahoo_got_conf_invite(int id, const char *me, const char *who,
 	if (!chat_room) {
 		ycrd = g_new0(eb_yahoo_chat_room_data, 1);
 		ycrd->id = id;
-		ycrd->host = strdup(who);
-		ycrd->room = strdup(room);
+		ycrd->host = g_strdup(who);
+		ycrd->room = g_strdup(room);
 		ycrd->members = members;
 	} else {
 		YList *l;
@@ -1511,7 +1506,7 @@ static void ext_yahoo_conf_message(int id, const char *me,
 	}
 	umsg[j] = '\0';
 
-	ay_conversation_got_message(chat_room, who, umsg);
+	ay_conversation_got_message(chat_room, who, (char *)umsg);
 }
 
 static int eb_yahoo_send_chat_room_message(Conversation *room, char *message)
@@ -1563,7 +1558,7 @@ static void eb_yahoo_join_chat_room(Conversation *room)
 		if (!strcmp(handle, ylad->act_id))
 			return;
 	}
-	ycrd->members = y_list_append(ycrd->members, strdup(ylad->act_id));
+	ycrd->members = y_list_append(ycrd->members, g_strdup(ylad->act_id));
 }
 
 static void eb_yahoo_leave_chat_room(Conversation *room)
@@ -1583,16 +1578,16 @@ static void eb_yahoo_leave_chat_room(Conversation *room)
 		ycrd->room);
 
 	for (l = ycrd->members; l;) {
-		FREE(l->data);
+		g_free(l->data);
 		YList *yl = l;
 		l = l->next;
 		ycrd->members = y_list_remove(ycrd->members, yl);
 	}
 
-	free(ycrd->host);
-	free(ycrd->room);
+	g_free(ycrd->host);
+	g_free(ycrd->room);
 
-	free(ycrd);
+	g_free(ycrd);
 }
 
 static void eb_yahoo_send_invite(eb_local_account *ela, Conversation *ecr,
@@ -1616,7 +1611,7 @@ static void eb_yahoo_send_invite(eb_local_account *ela, Conversation *ecr,
 
 	yahoo_conference_addinvite(ylad->id, ylad->act_id, who, ycrd->room,
 		ycrd->members, message);
-	ycrd->members = y_list_append(ycrd->members, strdup(who));
+	ycrd->members = y_list_append(ycrd->members, g_strdup(who));
 }
 
 static Conversation *eb_yahoo_make_chat_room(char *name, eb_local_account *ela,
@@ -1720,9 +1715,9 @@ static void _image_window_closed(int tag, void *data)
 	else
 		ay_yahoo_stop_webcam(ela);
 
-	FREE(wf->who);
-	FREE(wf->buff);
-	FREE(wf);
+	g_free(wf->who);
+	g_free(wf->buff);
+	g_free(wf);
 }
 
 static void ext_yahoo_got_webcam_image(int id, const char *who,
@@ -1751,7 +1746,7 @@ static void ext_yahoo_got_webcam_image(int id, const char *who,
 	}
 
 	if (wf->image_size != image_size || wf->recd_size == 0) {
-		FREE(wf->buff);
+		g_free(wf->buff);
 		wf->image_size = image_size;
 		wf->timestamp = timestamp;
 		wf->recd_size = 0;
@@ -1765,7 +1760,7 @@ static void ext_yahoo_got_webcam_image(int id, const char *who,
 		ay_image_window_add_data(wf->image_window_tag, wf->buff,
 			wf->image_size, 1);
 		ay_image_window_add_data(wf->image_window_tag, NULL, 0, 0);
-		FREE(wf->buff);
+		g_free(wf->buff);
 		wf->recd_size = 0;
 	}
 
@@ -1785,21 +1780,21 @@ static void eb_yahoo_webcam_invite_callback(gpointer data, int result)
 		if (ela) {
 			yla = ela->protocol_local_account_data;
 			if ((wf = find_webcam_feed(yla, wd->who))) {
-				FREE(wd->who);
+				g_free(wd->who);
 				yahoo_webcam_close_feed(wf->id, wf->who);
 			} else {
-				wf = y_new0(struct webcam_feed, 1);
+				wf = g_new0(struct webcam_feed, 1);
 				wf->id = wd->id;
 				wf->who = wd->who;
 				yla->webcams = y_list_prepend(yla->webcams, wf);
 			}
 			yahoo_webcam_get_feed(wf->id, wf->who);
 		} else
-			FREE(wd->who);
+			g_free(wd->who);
 	} else
-		FREE(wd->who);
+		g_free(wd->who);
 
-	FREE(wd);
+	g_free(wd);
 }
 
 static void ay_yahoo_view_users_webcam(ebmCallbackData *data)
@@ -1848,7 +1843,7 @@ static void ext_yahoo_webcam_invite(int id, const char *me, const char *who)
 			"Do you want to accept?"), ela->handle, who);
 
 	wd->id = id;
-	wd->who = strdup(who);
+	wd->who = g_strdup(who);
 	eb_do_dialog(buff, _("Yahoo Webcam Invitation"),
 		eb_yahoo_webcam_invite_callback, wd);
 }
@@ -1951,7 +1946,7 @@ static void ay_yahoo_start_webcam(eb_local_account *ela)
 	ylad->webcam_start = get_time();
 
 	if (!(wf = find_webcam_feed(ylad, NULL))) {
-		wf = y_new0(struct webcam_feed, 1);
+		wf = g_new0(struct webcam_feed, 1);
 		wf->id = ylad->id;
 		ylad->webcams = y_list_prepend(ylad->webcams, wf);
 	}
@@ -1990,8 +1985,8 @@ static void ay_yahoo_authorise_webcam(gpointer data, int result)
 
 	yahoo_webcam_accept_viewer(wf->id, wf->who, result);
 
-	free(wf->who);
-	free(wf);
+	g_free(wf->who);
+	g_free(wf);
 }
 
 static void ext_yahoo_webcam_viewer(int id, const char *who, int connect)
@@ -2045,9 +2040,9 @@ static void ext_yahoo_webcam_viewer(int id, const char *who, int connect)
 				buff);
 		}
 	} else {
-		wf = y_new0(struct webcam_feed, 1);
+		wf = g_new0(struct webcam_feed, 1);
 		wf->id = id;
-		wf->who = strdup(who);
+		wf->who = g_strdup(who);
 		eb_do_dialog(buff, _("Yahoo Webcam Request"),
 			ay_yahoo_authorise_webcam, wf);
 	}
@@ -2196,8 +2191,8 @@ static void eb_yahoo_authorize_callback(gpointer data, int result)
 	}
 
 	if (ay)
-		FREE(ay->who);
-	FREE(ay);
+		g_free(ay->who);
+	g_free(ay);
 }
 
 static void ext_yahoo_rejected(int id, const char *who, const char *msg)
@@ -2231,7 +2226,7 @@ static void ext_yahoo_contact_added(int id, const char *myid,
 	strcat(buff, _("Do you want to allow this?"));
 
 	ay->id = id;
-	ay->who = strdup(who);
+	ay->who = g_strdup(who);
 	eb_do_dialog(buff, _("Yahoo New Contact"), eb_yahoo_authorize_callback,
 		ay);
 }
@@ -2255,7 +2250,7 @@ static int eb_yahoo_send_typing_stop(gpointer data)
 	((eb_yahoo_account_data *)tcd->ea->protocol_account_data)->
 		typing_timeout_tag = 0;
 
-	FREE(tcd);
+	g_free(tcd);
 
 	/* return 0 to remove the timeout */
 	return 0;
@@ -2595,8 +2590,8 @@ static void eb_yahoo_logout(eb_local_account *ela)
 		if (i->id == ylad->id) {
 			eb_remove_menu_item(EB_PROFILE_MENU, i->tag);
 			identities = y_list_remove_link(identities, l);
-			free(i->identity);
-			free(i);
+			g_free(i->identity);
+			g_free(i);
 		}
 	}
 
@@ -2841,7 +2836,7 @@ static void eb_yahoo_set_buddy_nick(eb_yahoo_local_account_data *ylad,
 	if (!bud)
 		return;
 
-	yab = y_new0(struct yab, 1);
+	yab = g_new0(struct yab, 1);
 
 	/* if there's already an entry, don't destroy it */
 	if (bud->yab_entry) {
@@ -2850,7 +2845,7 @@ static void eb_yahoo_set_buddy_nick(eb_yahoo_local_account_data *ylad,
 	}
 
 	yab->id = bud->id;
-	yab->fname = strdup(nick);
+	yab->fname = g_strdup(nick);
 
 	/* get rid of leading spaces */
 	for (i = 0; yab->fname[i] == ' '; i++) ;
@@ -2872,8 +2867,8 @@ static void eb_yahoo_set_buddy_nick(eb_yahoo_local_account_data *ylad,
 
 	yahoo_set_yab(ylad->id, yab);
 
-	free(yab->fname);
-	free(yab);
+	g_free(yab->fname);
+	g_free(yab);
 }
 
 static void eb_yahoo_change_user_name(eb_account *ea, const char *name)
@@ -3254,14 +3249,14 @@ static void eb_yahoo_set_away(eb_local_account *ela, char *message, int away)
 					|| strstr(lmsg, "house")))
 				state = EB_DISPLAY_YAHOO_NOTATHOME;
 
-			FREE(lmsg);
+			g_free(lmsg);
 			ylad->away = away;
 		}
 
 		if (state == EB_DISPLAY_YAHOO_CUSTOM) {
 			LOG(("Custom away message"));
-			FREE(ylad->status_message);
-			ylad->status_message = strdup(message);
+			g_free(ylad->status_message);
+			ylad->status_message = g_strdup(message);
 			ylad->away = away;
 		}
 
@@ -3332,7 +3327,7 @@ static void _yahoo_connected(AyConnection *fd, int error, void *data)
 		ylad->connect_progress_tag = 0;
 
 		ccd->callback(NULL, 0, ccd->data);
-		FREE(ccd);
+		g_free(ccd);
 
 		is_setting_state = 1;
 		if (ela->status_menu) {
@@ -3342,7 +3337,7 @@ static void _yahoo_connected(AyConnection *fd, int error, void *data)
 		is_setting_state = 0;
 	} else {
 		ccd->callback(fd, error, ccd->data);
-		FREE(ccd);
+		g_free(ccd);
 		ylad->connect_tag = 0;
 	}
 }
@@ -3400,12 +3395,12 @@ static int ext_yahoo_connect_async(int id, const char *host, int port,
 		callback(fd, 0, data);
 #else
 	struct connect_callback_data *ccd =
-		y_new0(struct connect_callback_data, 1);
+		g_new0(struct connect_callback_data, 1);
 	eb_yahoo_local_account_data *ylad;
 
 	ccd->ela = yahoo_find_local_account_by_id(id);
 	if (!ccd->ela) {
-		free(ccd);
+		g_free(ccd);
 		return 0;
 	}
 	ccd->callback = callback;
@@ -3531,7 +3526,7 @@ static void ext_yahoo_remove_handler(int id, int tag)
 					d->fd, d->tag));
 			ay_connection_input_remove(d->tag);
 			handlers = y_list_remove_link(handlers, l);
-			FREE(d);
+			g_free(d);
 			y_list_free_1(l);
 			break;
 		}
@@ -3833,7 +3828,7 @@ struct service_callbacks *query_callbacks()
 	struct service_callbacks *sc;
 
 	LOG(("yahoo_query_callbacks"));
-	sc = y_new0(struct service_callbacks, 1);
+	sc = g_new0(struct service_callbacks, 1);
 
 	sc->query_connected = eb_yahoo_query_connected;
 	sc->login = eb_yahoo_login;
@@ -3941,7 +3936,6 @@ static void unregister_menuentries()
 
 static void register_callbacks()
 {
-#ifdef USE_STRUCT_CALLBACKS
 	static struct yahoo_callbacks yc;
 
 	yc.ext_yahoo_login_response = ext_yahoo_login_response;
@@ -4002,6 +3996,4 @@ static void register_callbacks()
 	yc.ext_yahoo_got_buddy_change_group = ext_yahoo_got_buddy_change_group;
 
 	yahoo_register_callbacks(&yc);
-
-#endif
 }
