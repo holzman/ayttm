@@ -20,6 +20,7 @@ BuildRequires: libtool-ltdl
 BuildRequires: libtool-ltdl-devel
 BuildRequires: gtk2-devel >= 2.12.0
 BuildRequires: glib2-devel >= 2.0.0
+BuildRequires: libyahoo2 >= 1.0.0
 
 
 # If you want stripped RPM with no crash dialog use
