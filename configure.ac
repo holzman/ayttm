@@ -294,6 +294,8 @@ else
 	AC_MSG_WARN([Unable to find openssl, you won't have MSN and yahoo plugins. Nor will you get to use SSL with jabber])
 fi
 
+# Check for libyahoo2
+AC_CHECK_LIB(yahoo2, yahoo_init,, [enable_yahoo="no"];AC_MSG_WARN([libyahoo2 is not installed. Yahoo protocol module will not be built]))
 
 LIBS=$ac_check_lib_save_LIBS 
 CFLAGS=$ac_check_lib_save_CFLAGS
@@ -568,7 +570,6 @@ AC_CONFIG_FILES([Makefile ayttm.spec
                  modules/aycryption/Makefile
                  modules/utility/Makefile
                  modules/yahoo2/Makefile
-                 modules/yahoo2/libyahoo2/Makefile
 		 modules/smileys/Makefile
 		 modules/smileys/console_smileys/Makefile
 		 modules/smileys/giles_smiles/Makefile
