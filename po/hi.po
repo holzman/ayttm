@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Ayttm\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-02-19 09:55+0530\n"
+"POT-Creation-Date: 2010-07-11 01:38+0530\n"
 "PO-Revision-Date: 2007-02-24 09:42+0530\n"
 "Last-Translator: Ashish Jain <ashish_jain_mca@yahoo.co.nz>\n"
 "Language-Team: आशीष जैन ( ASHISH JAIN ) <tensai_ashish@yahoo.com>\n"
@@ -91,7 +91,7 @@ msgstr "प्रवेश के ल‍िए निजी कुंजी:"
 
 #: modules/aycryption/aycryption.c:133 modules/irc/irc.c:123
 #: modules/jabber/jabber.c:131 modules/msn2/msn.c:211 modules/smtp/smtp.c:105
-#: modules/yahoo2/yahoo.c:252
+#: modules/yahoo2/yahoo.c:251
 msgid "Enable debugging"
 msgstr "दोषमार्जन समर्थ करिए"
 
@@ -204,7 +204,7 @@ msgid "Select"
 msgstr "चुनिए"
 
 #: modules/aycryption/select-keys.c:435 modules/aycryption/select-keys.c:680
-#: src/activity_bar.C:136 src/chat_window.c:663 src/chat_window.c:2273
+#: src/activity_bar.C:136 src/chat_window.c:663 src/chat_window.c:2274
 #: src/edit_local_accounts.c:801
 msgid "Cancel"
 msgstr "रद्द करें"
@@ -397,13 +397,13 @@ msgid "_Nick:"
 msgstr "_Nick:"
 
 #: modules/irc/irc.c:642 modules/jabber/jabber.c:472 modules/msn2/msn.c:459
-#: modules/smtp/smtp.c:193 modules/yahoo2/yahoo.c:2651
+#: modules/smtp/smtp.c:193 modules/yahoo2/yahoo.c:2646
 #: src/edit_local_accounts.c:672
 msgid "_Password:"
 msgstr "(_P)पासवर्ड:"
 
 #: modules/irc/irc.c:649 modules/jabber/jabber.c:493 modules/msn2/msn.c:473
-#: modules/yahoo2/yahoo.c:2665 src/edit_local_accounts.c:710
+#: modules/yahoo2/yahoo.c:2660 src/edit_local_accounts.c:710
 msgid "_Connect at startup"
 msgstr "(_C)शुरु होते समय ह‍ी जोडे ।"
 
@@ -567,7 +567,7 @@ msgid "Co_nnect Server:"
 msgstr "सर्वर जोडे(_n): "
 
 #: modules/jabber/jabber.c:486 modules/msn2/msn.c:466
-#: modules/yahoo2/yahoo.c:2658
+#: modules/yahoo2/yahoo.c:2653
 msgid "_Ask for password at Login time"
 msgstr "(_A)पासवर्ड के ल‍िए प्रवेश के समय पूछें"
 
@@ -588,7 +588,7 @@ msgid "Request mail information (GMail only)"
 msgstr ""
 
 #: modules/jabber/jabber.c:1314 modules/msn2/msn.c:2028
-#: modules/yahoo2/yahoo.c:2299
+#: modules/yahoo2/yahoo.c:2294
 msgid "typing..."
 msgstr "लिख रहा है..."
 
@@ -935,68 +935,68 @@ msgstr "G गुण ख़त्म हो रहा है: "
 msgid "Ending B value:"
 msgstr "B गुण ख़त्म हो रहा है: "
 
-#: modules/yahoo2/yahoo.c:175
+#: modules/yahoo2/yahoo.c:174
 msgid "Pager Server:"
 msgstr "पेज़र सर्वर:"
 
-#: modules/yahoo2/yahoo.c:182
+#: modules/yahoo2/yahoo.c:181
 msgid "Pager Port:"
 msgstr "पेज़र पोर्ट:"
 
-#: modules/yahoo2/yahoo.c:189
+#: modules/yahoo2/yahoo.c:188
 msgid "File Transfer Host:"
 msgstr "फ़ाईल स्थानान्नतरण Host:"
 
-#: modules/yahoo2/yahoo.c:196
+#: modules/yahoo2/yahoo.c:195
 msgid "File Transfer Port:"
 msgstr "फ़ाईल स्थानान्नतरण Port:"
 
-#: modules/yahoo2/yahoo.c:203
+#: modules/yahoo2/yahoo.c:202
 msgid "Webcam Host:"
 msgstr "वेबकेम Host:"
 
-#: modules/yahoo2/yahoo.c:210
+#: modules/yahoo2/yahoo.c:209
 msgid "Webcam Port:"
 msgstr "वेबकेम Port:"
 
-#: modules/yahoo2/yahoo.c:217
+#: modules/yahoo2/yahoo.c:216
 msgid "Connection type:"
 msgstr "सम्पर्क प्रकार:"
 
-#: modules/yahoo2/yahoo.c:220
+#: modules/yahoo2/yahoo.c:219
 msgid "Dialup"
 msgstr "Dialup"
 
-#: modules/yahoo2/yahoo.c:221
+#: modules/yahoo2/yahoo.c:220
 msgid "DSL/Cable"
 msgstr "DSL/Cable"
 
-#: modules/yahoo2/yahoo.c:222
+#: modules/yahoo2/yahoo.c:221
 msgid "T1/Lan"
 msgstr "T1/Lan"
 
-#: modules/yahoo2/yahoo.c:231
+#: modules/yahoo2/yahoo.c:230
 msgid "Prompt for transferred filename"
 msgstr "स्थानान्नतरित फ़ाईलनाम के लिए टोंके"
 
-#: modules/yahoo2/yahoo.c:238
+#: modules/yahoo2/yahoo.c:237
 msgid "Guess status from Away messages"
 msgstr "अवर्तमान संदेशों से अवस्था अनुमान करें"
 
-#: modules/yahoo2/yahoo.c:245
+#: modules/yahoo2/yahoo.c:244
 msgid "Show how long contact has been away"
 msgstr "सम्पर्क कितने समय से अवर्तमान है दिख़ाईए "
 
-#: modules/yahoo2/yahoo.c:947
+#: modules/yahoo2/yahoo.c:942
 #, c-format
 msgid "<FONT COLOR=\"#0000FF\">[Offline message at %s]</FONT><BR>%s"
 msgstr "<FONT COLOR=\"#0000FF\">[%s पर ओफलाईन संदेश]</FONT><BR>%s"
 
-#: modules/yahoo2/yahoo.c:1061
+#: modules/yahoo2/yahoo.c:1056
 msgid "Save file as"
 msgstr "फा़ईल ऐसे सहेज़े"
 
-#: modules/yahoo2/yahoo.c:1087
+#: modules/yahoo2/yahoo.c:1082
 #, fuzzy, c-format
 msgid ""
 "The Yahoo user <b>%s</b> has sent you a file.\n"
@@ -1005,7 +1005,7 @@ msgid ""
 msgstr ""
 "%s, yahoo प्रयोगकर्त्ता %s एक फाईल %s%s  भेजना चाहता है,क्या आप स्वीकार करना चाहते हैं?"
 
-#: modules/yahoo2/yahoo.c:1091
+#: modules/yahoo2/yahoo.c:1086
 #, fuzzy, c-format
 msgid ""
 "The Yahoo user <b>%s</b> has sent you a file with the message:\n"
@@ -1016,23 +1016,23 @@ msgid ""
 msgstr ""
 "%s, yahoo प्रयोगकर्त्ता %s एक फाईल %s%s  भेजना चाहता है,क्या आप स्वीकार करना चाहते हैं?"
 
-#: modules/yahoo2/yahoo.c:1100
+#: modules/yahoo2/yahoo.c:1095
 msgid "Yahoo File Transfer"
 msgstr "Yahoo फ़ाईल स्थानान्नतरण"
 
-#: modules/yahoo2/yahoo.c:1246 modules/yahoo2/yahoo.c:1357
-#: modules/yahoo2/yahoo.c:1828 modules/yahoo2/yahoo.c:2156
-#: modules/yahoo2/yahoo.c:2209 modules/yahoo2/yahoo.c:2363
-#: modules/yahoo2/yahoo.c:2527 modules/yahoo2/yahoo.c:3488
+#: modules/yahoo2/yahoo.c:1241 modules/yahoo2/yahoo.c:1352
+#: modules/yahoo2/yahoo.c:1823 modules/yahoo2/yahoo.c:2151
+#: modules/yahoo2/yahoo.c:2204 modules/yahoo2/yahoo.c:2358
+#: modules/yahoo2/yahoo.c:2522 modules/yahoo2/yahoo.c:3483
 msgid "Yahoo Error"
 msgstr "Yahoo दोष"
 
-#: modules/yahoo2/yahoo.c:1246
+#: modules/yahoo2/yahoo.c:1241
 #, fuzzy
 msgid "Failed to send file"
 msgstr "फाइल खोलने मे असमर्थ "
 
-#: modules/yahoo2/yahoo.c:1343
+#: modules/yahoo2/yahoo.c:1338
 #, c-format
 msgid ""
 "The yahoo user %s declined your invitation to join conference %s, with the "
@@ -1041,11 +1041,11 @@ msgstr ""
 "yahoo प्रयोगकर्त्ता %s ने आपका सभा %s  से जुडने का आमन्त्रण , इस सन्देश  : %s : के साथ "
 "ठुकरा दिया है ।"
 
-#: modules/yahoo2/yahoo.c:1380 modules/yahoo2/yahoo.c:1454
+#: modules/yahoo2/yahoo.c:1375 modules/yahoo2/yahoo.c:1449
 msgid "Thanks, but no thanks"
 msgstr "धन्यवाद , परन्तु मुझे कोई दिलचस्पी नही"
 
-#: modules/yahoo2/yahoo.c:1395
+#: modules/yahoo2/yahoo.c:1390
 #, fuzzy, c-format
 msgid ""
 "%s, the yahoo user %s has invited you to a conference - %s, the topic is %"
@@ -1056,24 +1056,24 @@ msgstr ""
 "%s, yahoo प्रयोगकर्त्ता %s ने आपको सभा -  %s  से जुडने का आमन्त्रण , इस विषय : %s : के "
 "साथ दिया है ।\n"
 
-#: modules/yahoo2/yahoo.c:1402
+#: modules/yahoo2/yahoo.c:1397
 msgid "Yahoo Join Conference"
 msgstr "Yahoo सभा से जुडें"
 
-#: modules/yahoo2/yahoo.c:1615
+#: modules/yahoo2/yahoo.c:1610
 msgid "Join my conference"
 msgstr "मेरी सभा से जुडें"
 
-#: modules/yahoo2/yahoo.c:1747
+#: modules/yahoo2/yahoo.c:1742
 #, c-format
 msgid "%s's webcam"
 msgstr "%s का वेबकेम"
 
-#: modules/yahoo2/yahoo.c:1830 modules/yahoo2/yahoo.c:2158
+#: modules/yahoo2/yahoo.c:1825 modules/yahoo2/yahoo.c:2153
 msgid "Cannot find a valid local account to view user's webcam."
 msgstr "प्रयोगकर्त्ता का वेबकेम देखने के लिए कोई लोकल ख़ाता नहीं मिला ।"
 
-#: modules/yahoo2/yahoo.c:1847
+#: modules/yahoo2/yahoo.c:1842
 #, c-format
 msgid ""
 "%s, the yahoo user %s has invited you to view their webcam.Do you want to "
@@ -1082,36 +1082,36 @@ msgstr ""
 "%s, yahoo प्रयोगकर्त्ता %s अपना वेबकेम आपको दिख़ाने के लिए आमन्त्रण दे रहा है । क्या आप "
 "स्वीकार करते हैं?"
 
-#: modules/yahoo2/yahoo.c:1852
+#: modules/yahoo2/yahoo.c:1847
 msgid "Yahoo Webcam Invitation"
 msgstr "Yahoo  वेबकेम आमन्त्रण"
 
-#: modules/yahoo2/yahoo.c:1881
+#: modules/yahoo2/yahoo.c:1876
 #, c-format
 msgid "%s, webcam connection closed. %s "
 msgstr "%s, वेबकेम सम्पर्क बन्द । %s "
 
-#: modules/yahoo2/yahoo.c:1885
+#: modules/yahoo2/yahoo.c:1880
 msgid "stopped broadcasting."
 msgstr "प्रसार बन्द ।"
 
-#: modules/yahoo2/yahoo.c:1889
+#: modules/yahoo2/yahoo.c:1884
 msgid "cancelled viewing permission."
 msgstr "देखने की आज्ञा निषेध ।"
 
-#: modules/yahoo2/yahoo.c:1893
+#: modules/yahoo2/yahoo.c:1888
 msgid "declined you permission."
 msgstr "आपकी अनुमति रद्द की ।"
 
-#: modules/yahoo2/yahoo.c:1897
+#: modules/yahoo2/yahoo.c:1892
 msgid "does not have their webcam online."
 msgstr "उनका वेबकेम उपस्थित नही है ।"
 
-#: modules/yahoo2/yahoo.c:1901
+#: modules/yahoo2/yahoo.c:1896
 msgid "did something we don't know about."
 msgstr "ने कुछ किया जो हमे नहीं पता ।"
 
-#: modules/yahoo2/yahoo.c:1908
+#: modules/yahoo2/yahoo.c:1903
 msgid ""
 "\n"
 "Close image window?"
@@ -1119,26 +1119,26 @@ msgstr ""
 "\n"
 "चित्र पट बन्द करें?"
 
-#: modules/yahoo2/yahoo.c:1910 modules/yahoo2/yahoo.c:1913
+#: modules/yahoo2/yahoo.c:1905 modules/yahoo2/yahoo.c:1908
 msgid "Webcam connection closed"
 msgstr "वेबकेम सम्पर्क बन्द"
 
-#: modules/yahoo2/yahoo.c:1961 modules/yahoo2/yahoo.c:2042
+#: modules/yahoo2/yahoo.c:1956 modules/yahoo2/yahoo.c:2037
 #, c-format
 msgid "My webcam (%d viewer%s)"
 msgstr "मेरा वेबकेम (%d दर्शक %s)"
 
-#: modules/yahoo2/yahoo.c:2011
+#: modules/yahoo2/yahoo.c:2006
 #, c-format
 msgid "%s, the yahoo user %s has stopped viewing your webcam."
 msgstr "%s, yahoo प्रयोगकर्त्ता %s आपका वेबकेम देखना बन्द किया ।"
 
-#: modules/yahoo2/yahoo.c:2017
+#: modules/yahoo2/yahoo.c:2012
 #, c-format
 msgid "%s, the yahoo user %s is viewing your webcam."
 msgstr "%s, yahoo प्रयोगकर्त्ता %s आपका वेबकेम देख रह़ा है ।"
 
-#: modules/yahoo2/yahoo.c:2024
+#: modules/yahoo2/yahoo.c:2019
 #, c-format
 msgid ""
 "%s, the yahoo user %s wants to view your webcam.\n"
@@ -1147,7 +1147,7 @@ msgstr ""
 "%s, yahoo प्रयोगकर्त्ता %s आपका वेबकेम देखना चाहता है ।\n"
 "क्या आप अनुमति देते हैं ?"
 
-#: modules/yahoo2/yahoo.c:2030
+#: modules/yahoo2/yahoo.c:2025
 #, c-format
 msgid ""
 "%s, the yahoo user %s wants to %d your webcam.  Tell the ayttm devels about "
@@ -1156,38 +1156,38 @@ msgstr ""
 "%s, yahoo प्रयोगकर्त्ता %s आपका वेबकेम %d चाहता है । ayttm डेवलपर्स को इसके बारे मे "
 "बताएँ ।"
 
-#: modules/yahoo2/yahoo.c:2039 modules/yahoo2/yahoo.c:2068
+#: modules/yahoo2/yahoo.c:2034 modules/yahoo2/yahoo.c:2063
 msgid "Yahoo Webcam"
 msgstr "Yahoo वेबकेम"
 
-#: modules/yahoo2/yahoo.c:2051
+#: modules/yahoo2/yahoo.c:2046
 msgid "Yahoo Webcam Request"
 msgstr "Yahoo वेबकेम प्रार्थना"
 
-#: modules/yahoo2/yahoo.c:2070
+#: modules/yahoo2/yahoo.c:2065
 msgid "Could not read images from your webcam, could not find a video grabber."
 msgstr "वेबकेम से तसवीर नहीं देख सकते,वि‍‍डीयो ग्रेबर नही मिला ।"
 
-#: modules/yahoo2/yahoo.c:2128
+#: modules/yahoo2/yahoo.c:2123
 #, c-format
 msgid "%s, the yahoo user %s has declined your invitation to view your webcam."
 msgstr ""
 "%s, yahoo प्रयोगकर्त्ता %s ने आपका अपना वेबकेम दिखाने का आमन्त्रण ठुकरा दिया है । "
 
-#: modules/yahoo2/yahoo.c:2130
+#: modules/yahoo2/yahoo.c:2125
 msgid "Webcam invite declined"
 msgstr "वेबकेम निमन्त्रण रद्द"
 
-#: modules/yahoo2/yahoo.c:2207
+#: modules/yahoo2/yahoo.c:2202
 #, c-format
 msgid "%s has rejected your request to be added as a buddy%s%s"
 msgstr "%s ने आपकी मित्र बनने की प्रार्थना रद्द की %s%s"
 
-#: modules/yahoo2/yahoo.c:2208
+#: modules/yahoo2/yahoo.c:2203
 msgid " with the message:\n"
 msgstr "सन्देश के साथ:\n"
 
-#: modules/yahoo2/yahoo.c:2222
+#: modules/yahoo2/yahoo.c:2217
 #, fuzzy, c-format
 msgid ""
 "%s, the yahoo user \n"
@@ -1197,7 +1197,7 @@ msgid ""
 "has added you to their contact list"
 msgstr "%s, yahoo प्रयोगकर्त्ता %s  आपकी सम्पर्क सूची में सम्मिलित"
 
-#: modules/yahoo2/yahoo.c:2225
+#: modules/yahoo2/yahoo.c:2220
 #, fuzzy
 msgid ""
 " with the following message:\n"
@@ -1205,52 +1205,52 @@ msgid ""
 "<i>"
 msgstr "निम्नलिखित सन्देश के साथ:\n"
 
-#: modules/yahoo2/yahoo.c:2231
+#: modules/yahoo2/yahoo.c:2226
 msgid "Do you want to allow this?"
 msgstr "क्या आप इसे अनुमति देना चाहते है?"
 
-#: modules/yahoo2/yahoo.c:2235
+#: modules/yahoo2/yahoo.c:2230
 msgid "Yahoo New Contact"
 msgstr "Yahoo नया सम्पर्क"
 
-#: modules/yahoo2/yahoo.c:2330
+#: modules/yahoo2/yahoo.c:2325
 #, c-format
 msgid "You have new mail from %s about %s\n"
 msgstr "एक नई मेल है %s की तरफ़ से %s के बारे में \n"
 
-#: modules/yahoo2/yahoo.c:2335
+#: modules/yahoo2/yahoo.c:2330
 #, c-format
 msgid "You have %d message%s\n"
 msgstr "आपके लिए %d संदेश%s हैं ।\n"
 
-#: modules/yahoo2/yahoo.c:2336
+#: modules/yahoo2/yahoo.c:2331
 msgid "s"
 msgstr "स"
 
-#: modules/yahoo2/yahoo.c:2341
+#: modules/yahoo2/yahoo.c:2336
 msgid "Yahoo Mail"
 msgstr "Yahoo मेल"
 
-#: modules/yahoo2/yahoo.c:2354
+#: modules/yahoo2/yahoo.c:2349
 #, fuzzy, c-format
 msgid "%s: Yahoo System Message"
 msgstr "Yahoo सिस्टम संदेश"
 
-#: modules/yahoo2/yahoo.c:2422
+#: modules/yahoo2/yahoo.c:2417
 #, c-format
 msgid "Logging in to Yahoo account: %s"
 msgstr "Yahoo! खाते :  %s में प्रवेश हो रहा है ।"
 
-#: modules/yahoo2/yahoo.c:2453
+#: modules/yahoo2/yahoo.c:2448
 #, c-format
 msgid "Yahoo! password for: %s"
 msgstr "Yahoo! पासवर्ड : %s के ल‍िए ।"
 
-#: modules/yahoo2/yahoo.c:2478
+#: modules/yahoo2/yahoo.c:2473
 msgid "Fetching buddies..."
 msgstr ""
 
-#: modules/yahoo2/yahoo.c:2494
+#: modules/yahoo2/yahoo.c:2489
 #, c-format
 msgid ""
 "Could not log into Yahoo service - username not recognised.  Please verify "
@@ -1259,7 +1259,7 @@ msgstr ""
 "Yahoo सर्विस में प्रवेश निषेध - प्रयोगकर्त्ता नाम पहचान असफल. कृप्या प्रयोगकर्त्ता नाम जाँच "
 "लें कि वह सही लिखा है ।"
 
-#: modules/yahoo2/yahoo.c:2499
+#: modules/yahoo2/yahoo.c:2494
 #, c-format
 msgid ""
 "Could not log into Yahoo service - incorrect password.  Please verify that "
@@ -1267,7 +1267,7 @@ msgid ""
 msgstr ""
 "Yahoo सर्विस में प्रवेश निषेध - गलत पासवर्ड . कृप्या पासवर्ड जाँच लें कि वह सही लिखा है ।"
 
-#: modules/yahoo2/yahoo.c:2505
+#: modules/yahoo2/yahoo.c:2500
 #, c-format
 msgid ""
 "Could not log into Yahoo service.  Your account has been locked.\n"
@@ -1276,14 +1276,14 @@ msgstr ""
 "Yahoo सर्विस में प्रवेश निषेध ।आपका ख़ाता बन्द कर दिया गया है ।\n"
 "उसे फिर से चालू करने के लिए %s पर जाएँ ।"
 
-#: modules/yahoo2/yahoo.c:2511
+#: modules/yahoo2/yahoo.c:2506
 #, c-format
 msgid ""
 "You have been logged out of the yahoo service, possibly due to a duplicate "
 "login."
 msgstr "शायद दूसरी जगह प्रवेश के कारण आप yahoo सर्विस से बाहर कर दिए गए हैं।"
 
-#: modules/yahoo2/yahoo.c:2515
+#: modules/yahoo2/yahoo.c:2510
 #, c-format
 msgid ""
 "Could not connect to Yahoo server.  Please verify that you are connected to "
@@ -1292,28 +1292,28 @@ msgstr ""
 "Yahoo सर्वर से सम्पर्क बन्द।कृप्या जाँच लें कि आप नेट से जुडे हुए है तथा host और port सही डले "
 "हुए है ।"
 
-#: modules/yahoo2/yahoo.c:2519
+#: modules/yahoo2/yahoo.c:2514
 #, c-format
 msgid "Could not log into Yahoo service due to unknown state: %d\n"
 msgstr "अपरीचित अवस्था : %d : के कारण Yahoo सर्विस में प्रवेश निषेध।\n"
 
-#: modules/yahoo2/yahoo.c:2644
+#: modules/yahoo2/yahoo.c:2639
 msgid "_Yahoo Id:"
 msgstr "_Yahoo Id:"
 
-#: modules/yahoo2/yahoo.c:2672
+#: modules/yahoo2/yahoo.c:2667
 msgid "Yahoo _Mail Notification"
 msgstr "Yahoo मेल सूचना(_M)"
 
-#: modules/yahoo2/yahoo.c:2679
+#: modules/yahoo2/yahoo.c:2674
 msgid "Login _invisible"
 msgstr "अदृश्य प्रवेश(_i)"
 
-#: modules/yahoo2/yahoo.c:2686
+#: modules/yahoo2/yahoo.c:2681
 msgid "Ignore _System Messages"
 msgstr "सिस्टम संदेश पर ध्यान न दें"
 
-#: modules/yahoo2/yahoo.c:2945 modules/yahoo2/yahoo.c:2990
+#: modules/yahoo2/yahoo.c:2940 modules/yahoo2/yahoo.c:2985
 #: src/conversation.c:475 src/chat_window.c:417 src/contact_util.C:600
 #: src/contact_util.C:604 src/offline_queue_mgmt.c:163
 #: src/offline_queue_mgmt.c:166 src/status.c:1269 src/status.c:1655
@@ -1321,36 +1321,36 @@ msgstr "सिस्टम संदेश पर ध्यान न दें"
 msgid "Ignore"
 msgstr "ध्यान न दे"
 
-#: modules/yahoo2/yahoo.c:3165
+#: modules/yahoo2/yahoo.c:3160
 #, c-format
 msgid "%s for %d:%02d:%02d"
 msgstr "%s for %d:%02d:%02d"
 
-#: modules/yahoo2/yahoo.c:3462
+#: modules/yahoo2/yahoo.c:3457
 #, c-format
 msgid "Yahoo read error (%d): %s"
 msgstr "Yahoo पढ़ने में दोष (%d): %s"
 
-#: modules/yahoo2/yahoo.c:3466
+#: modules/yahoo2/yahoo.c:3461
 #, c-format
 msgid "Yahoo read error: Server closed socket"
 msgstr "Yahoo पढ़ने में दोष:सर्वर ने साकेट बन्द किया"
 
-#: modules/yahoo2/yahoo.c:3474
+#: modules/yahoo2/yahoo.c:3469
 #, c-format
 msgid "Yahoo write error (%d): %s"
 msgstr "Yahoo लिख़ने में दोष (%d): %s"
 
-#: modules/yahoo2/yahoo.c:3478
+#: modules/yahoo2/yahoo.c:3473
 #, c-format
 msgid "Yahoo write error: Server closed socket"
 msgstr "Yahoo लिख़ने में दोष:सर्वर ने साकेट बन्द किया"
 
-#: modules/yahoo2/yahoo.c:3904 modules/yahoo2/yahoo.c:3907
+#: modules/yahoo2/yahoo.c:3899 modules/yahoo2/yahoo.c:3902
 msgid "Invite to view Webcam"
 msgstr "वेबकेम देखने के लिए निमन्त्रण दे "
 
-#: modules/yahoo2/yahoo.c:3914 modules/yahoo2/yahoo.c:3917
+#: modules/yahoo2/yahoo.c:3909 modules/yahoo2/yahoo.c:3912
 msgid "View Webcam"
 msgstr "वेबकेम देखें"
 
@@ -1422,7 +1422,7 @@ msgstr "खाता दोष"
 msgid "No Account Name specified."
 msgstr "कोई लोकल ख़ाता वर्णित नही ।"
 
-#: src/add_contact_window.c:230 src/chat_window.c:2066
+#: src/add_contact_window.c:230 src/chat_window.c:2067
 msgid "No local account specified."
 msgstr "कोई लोकल ख़ाता वर्णित नही ।"
 
@@ -1710,7 +1710,7 @@ msgstr ""
 msgid "Online"
 msgstr "ओनलाइन"
 
-#: src/chat_window.c:1761 src/chat_window.c:1762 src/chat_window.c:2241
+#: src/chat_window.c:1761 src/chat_window.c:1762 src/chat_window.c:2242
 msgid "Reconnect at login"
 msgstr "प्रवेश होने पर पुन:सम्पर्क स्थापित करें"
 
@@ -1745,81 +1745,81 @@ msgstr "Log देखें CTRL+L"
 msgid "Actions (CTRL+P)"
 msgstr ""
 
-#: src/chat_window.c:1875
+#: src/chat_window.c:1876
 #, fuzzy
 msgid "Send File (CTRL+T)"
 msgstr "फाइल भेजें CTRL+T"
 
-#: src/chat_window.c:1888
+#: src/chat_window.c:1889
 #, fuzzy
 msgid "Invite (CTRL+I)"
 msgstr "आमन्त्रित करें CTRL+I"
 
-#: src/chat_window.c:1899
+#: src/chat_window.c:1900
 #, fuzzy
 msgid "Ignore (CTRL+G)"
 msgstr "ध्यान नहीं दे CTRL+G"
 
-#: src/chat_window.c:1909
+#: src/chat_window.c:1910
 #, fuzzy
 msgid "Send Message (CTRL+R)"
 msgstr "संदेश भेजें CTRL+R"
 
-#: src/chat_window.c:1940
+#: src/chat_window.c:1941
 #, c-format
 msgid "Character Encoding for %s"
 msgstr ""
 
-#: src/chat_window.c:2066 src/chat_window.c:2084
+#: src/chat_window.c:2067 src/chat_window.c:2085
 msgid "Cannot join"
 msgstr "जोड नही सकते"
 
-#: src/chat_window.c:2085 src/chat_window.c:2193 src/edit_account_window.c:71
+#: src/chat_window.c:2086 src/chat_window.c:2194 src/edit_account_window.c:71
 #: src/edit_account_window.c:83
 msgid "The local account doesn't exist."
 msgstr "यह लोकल ख़ाता मौजूद नही ।"
 
-#: src/chat_window.c:2151 src/chat_window.c:2192
+#: src/chat_window.c:2152 src/chat_window.c:2193
 msgid "Cannot list chatrooms"
 msgstr "चेटरुम सूची नही बन सकती"
 
-#: src/chat_window.c:2152
+#: src/chat_window.c:2153
 msgid "No list available."
 msgstr "कोई सूची मौजूद नही ।"
 
-#: src/chat_window.c:2156
+#: src/chat_window.c:2157
 msgid "Select a chatroom."
 msgstr "चेटरुम चुनिए "
 
-#: src/chat_window.c:2156
+#: src/chat_window.c:2157
 msgid "Public chatrooms list"
 msgstr "सार्वजनिक चेटरुम सूची"
 
-#: src/chat_window.c:2159 src/chat_window.c:2252
+#: src/chat_window.c:2160 src/chat_window.c:2253
 msgid "List public chatrooms..."
 msgstr "सार्वजनिक चेटरुम सूचित करें..."
 
-#: src/chat_window.c:2198
+#: src/chat_window.c:2199
 msgid "Loading List. This may take a while..."
 msgstr ""
 
-#: src/chat_window.c:2219
+#: src/chat_window.c:2220
 msgid "Chat Room Name: "
 msgstr "चेटरुम नाम:"
 
-#: src/chat_window.c:2230 src/edit_account_window.c:233
+#: src/chat_window.c:2231 src/edit_account_window.c:233
 msgid "Local account: "
 msgstr "लोकल ख़ाता:"
 
-#: src/chat_window.c:2247
+#: src/chat_window.c:2248
 msgid "Chatroom is public"
 msgstr "चेटरुम सार्वजनिक है"
 
-#: src/chat_window.c:2258
+#: src/chat_window.c:2259
 msgid "Join a Chat Room"
 msgstr "किसी चेटरुम से जुडें"
 
-#: src/chat_window.c:2269
+#: src/chat_window.c:2270
 msgid "Join"
 msgstr "जुडें"
 
@@ -2644,7 +2644,7 @@ msgstr "फाइल डाउनलोड करें"
 msgid "Offline"
 msgstr "ओफलाईन(अनुपस्थित)"
 
-#: src/plugin.c:168
+#: src/plugin.c:161
 #, c-format
 msgid ""
 "Plugin %s has not been loaded because of an error:\n"
@@ -2652,48 +2652,48 @@ msgid ""
 "%s"
 msgstr ""
 
-#: src/plugin.c:170 src/plugin.c:587
+#: src/plugin.c:163 src/plugin.c:528
 msgid "Plugin error"
 msgstr ""
 
-#: src/plugin.c:242
+#: src/plugin.c:217
 msgid "Cannot resolve symbol \"plugin_info\"."
 msgstr ""
 
-#: src/plugin.c:319
+#: src/plugin.c:293
 #, c-format
 msgid "Cannot open module directory \"%s\"."
 msgstr ""
 
-#: src/plugin.c:321 src/plugin.c:519
+#: src/plugin.c:295 src/plugin.c:460
 msgid "Plugin Warning"
 msgstr "प्लग-ईन चेतावनी"
 
-#: src/plugin.c:329
+#: src/plugin.c:303
 #, c-format
 msgid "Looking for modules in %s"
 msgstr ""
 
-#: src/plugin.c:385
+#: src/plugin.c:350
 msgid "Unable to resolve symbol SERVICE_INFO"
 msgstr ""
 
-#: src/plugin.c:399
+#: src/plugin.c:361
 #, c-format
 msgid "Not loading module %s, a module for that service is already loaded!\n"
 msgstr ""
 
-#: src/plugin.c:403
+#: src/plugin.c:365
 msgid "Same service is provided by an already loaded plugin."
 msgstr ""
 
-#: src/plugin.c:424
+#: src/plugin.c:379
 msgid ""
 "This plugin is not binary compatible.\n"
 "Try a clean install (or read README)."
 msgstr ""
 
-#: src/plugin.c:430
+#: src/plugin.c:385
 #, c-format
 msgid ""
 "Plugin version (%d) differs from core version (%d), which means it is "
@@ -2701,16 +2701,16 @@ msgid ""
 "Try a clean install (or read README)."
 msgstr ""
 
-#: src/plugin.c:507
+#: src/plugin.c:452
 msgid "No init function defined"
 msgstr ""
 
-#: src/plugin.c:517
+#: src/plugin.c:458
 #, c-format
 msgid "Utility module %s doesn't define an init function; skipping it."
 msgstr ""
 
-#: src/plugin.c:585
+#: src/plugin.c:526
 #, c-format
 msgid "Unable to unload plugin %s; maybe it is still in use?"
 msgstr ""
