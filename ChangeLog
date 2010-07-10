@@ -1,263 +1,58 @@
-* Fri Feb 19 2010 Siddhesh Poyarekar <siddheshp@users.sourceforge.net>
-- 4942df550960ebaebda22c60e619c22cc5b725bb
- Updated translations
- 
-* Fri Feb 19 2010 Siddhesh Poyarekar <siddheshp@users.sourceforge.net>
-- 178e2ab81eaf7ab0a5d799a14a1b05011a49447d
- Explicitly link to libdl when building with dlfcn.
- 
-* Fri Feb 19 2010 Caolan McNamara <caolanm@redhat.com>
-- 3857bbbb406acecf5ae9693941a3a3a55b56dbb3
- Use enchant for spell check instead of aspell. Closes #2954338
- 
-* Sun Feb 14 2010 Siddhesh Poyarekar <siddheshp@users.sourceforge.net>
-- 569051c96ff93078618ca6f4c0637f55a40188a8
- IRC: Protect against empty command parameters
- 
-* Sun Feb 14 2010 Siddhesh Poyarekar <siddheshp@users.sourceforge.net>
-- 3a293738a0421e66affb6462d4b677438995b338
- Bump release number
- 
-* Mon Feb 1 2010 Siddhesh Poyarekar <siddheshp@users.sourceforge.net>
-- 1e2fffa0bd38a7829703146aa111ad100f5ff486
- ... Nor does it need any gdk stuff
- 
-* Mon Feb 1 2010 Siddhesh Poyarekar <siddheshp@users.sourceforge.net>
-- 717c3afca529823459ed7dc51d697ad7f1618984
- conversation does not need no gtk stuff :)
- 
-* Mon Feb 1 2010 Siddhesh Poyarekar <siddheshp@users.sourceforge.net>
-- 9820b2b4d1727347f55ecd926bf298888bd1ccec
- Updated TODO
- 
-* Mon Feb 1 2010 Siddhesh Poyarekar <siddheshp@users.sourceforge.net>
-- 4dbee48b326051074e5718e477a754ea0646d498
- Clean up the red tab window raise and taskbar flash behaviour a bit
- 
-* Mon Feb 1 2010 Siddhesh Poyarekar <siddheshp@users.sourceforge.net>
-- ee252ecc7224a1da91710be594086928852a1ecc
- Multiple conversation window fixes
- - remove the extra send sound
-- set tab label as red when message is received and highlight the
-  window in the taskbar
+* Sat Jul 10 2010 Siddhesh Poyarekar <siddheshp@users.sourceforge.net>
+- ab457c8fd47ae1a8f0396c36a9ef5d7c42a41620
+ Prepare for version 0.6.3
+ - Bump version number
+- Update translations
 
-* Mon Feb 1 2010 Siddhesh Poyarekar <siddheshp@users.sourceforge.net>
-- 9d46c5df5f924ec0b7edb5cecefa6060af269e1b
- Reenabled toolbar shortcuts for conversation windows
- 
-* Sun Jan 31 2010 Siddhesh Poyarekar <siddheshp@users.sourceforge.net>
-- a7b821873a5cad6780c154151c88c33c6c3677e3
- Auto start chat rooms working again
- 
-* Sun Jan 31 2010 Siddhesh Poyarekar <siddheshp@users.sourceforge.net>
-- a3825ed4ed748965642d4ee3935e24c98ba9c5d1
- Do not echo irc commands in the conversation window
- 
-* Tue Jan 19 2010 Siddhesh Poyarekar <siddheshp@users.sourceforge.net>
-- 55c49d39194ea858f138a324c0dc546d1bf318ea
- Re-enable the Group chat menu option
- Have send_im and send_chat_room_message return whether the message
-should be echoed or not
+* Wed Jun 2 2010 Siddhesh Poyarekar <siddheshp@users.sourceforge.net>
+- a0eab2b090d5d3d5073b1c0e9bf1995110522a2f
+ Removed libyahoo2 source tree
+ The source tree interferes with the build so it is best that we get
+rid of it.
 
-* Tue Jan 12 2010 Siddhesh Poyarekar <siddheshp@users.sourceforge.net>
-- c8f33f9210c0456ca59f42001cf8dd3fc7dedc9d
- Multiple changes. Conversation stuff almost done! Yay!
- * Conferencing invites, etc. with the new conversations stuff
- * Added new MSN NOT message. Fixes a crash due to unrecognized
-  message
- * New capability for a service: SERVICE_CAN_CONFERENCE
- * Got rid of iconvert stuff. We do charset conversion by default now
+* Wed Jun 2 2010 Siddhesh Poyarekar <siddheshp@users.sourceforge.net>
+- 3b35228b8a139e3d033f8eacc607f32220f0b932
+ - Add a check for libyahoo2 in configure - Remove libyahoo2 Makefile target from configure
+ 
+* Sat May 29 2010 Siddhesh Poyarekar <siddheshp@users.sourceforge.net>
+- dbb61b7a2d9240812e56da9901a7b19d1c31b2c3
+ libyahoo2 is now a dependency
+ 
+* Sat May 29 2010 Siddhesh Poyarekar <siddheshp@users.sourceforge.net>
+- bc65fb9885c3cee2d47dee95364c7b7e425de74d
+ Get rid of the libyahoo2 copy we have locally and dynamically link against the library instead.
+ Got rid of utility functions that were being used from yahoo_util.h
+since they're not exported by libyahoo2. And for good reason too since
+they are umm, internal.
 
-* Sun Jan 10 2010 Siddhesh Poyarekar <siddheshp@users.sourceforge.net>
-- 67cecbc14b8047218e511ce877c95f55cb3ec4e1
- Merge ssh://ayttm.git.sourceforge.net/gitroot/ayttm/ayttm
- Conflicts:
-	modules/msn2/msn.c
-Resolved conflict
+* Mon Apr 26 2010 Siddhesh Poyarekar <siddheshp@users.sourceforge.net>
+- 0956c957d5f477cdd78b17191555b56e6b25488f
+ Don't crash if enchant does not find the dictionary for your language
+ 
+* Fri Apr 23 2010 Siddhesh Poyarekar <siddheshp@users.sourceforge.net>
+- ac56243488e9c1496bba500e47e1b922252b599c
+ Cleaned up the dynamic library loading stuff a bit
+ Collected all the preprocessor stuff into the header file to make
+things a little cleaner as well as make it available to other parts of
+the code if necessary.
 
-* Sun Jan 10 2010 Siddhesh Poyarekar <siddheshp@users.sourceforge.net>
-- a503b0c3b292f7b43a7502fc6b44bf6152d78891
- Bumped up release
+* Thu Apr 22 2010 Siddhesh Poyarekar <siddheshp@users.sourceforge.net>
+- 838c9abc44d8c8923df3114c638214a4545558f2
+ Fix link order for ssl and libproxy.a
  
-* Sun Jan 10 2010 Siddhesh Poyarekar <siddheshp@users.sourceforge.net>
-- e3127e2c58717e9ee1e4ddad84a00d20578195a8
- More buffer protection fixes
- 
-* Tue Jan 5 2010 Siddhesh Poyarekar <siddheshp@users.sourceforge.net>
-- 806126a441736ba1c794f3d1b27d726e7c1c3c10
- Merge branch 'master' of ssh://ayttm.git.sourceforge.net/gitroot/ayttm/ayttm
- 
-* Tue Jan 5 2010 Siddhesh Poyarekar <siddheshp@users.sourceforge.net>
-- af50f6c123bae721f7e5bc00a234576df6f7d948
- Fixed buffer overflow in SoapAction URL in libmsn2
- Buffed up the buffer as well as used snprintf instead of sprintf
+* Tue Mar 23 2010 Siddhesh Poyarekar <siddheshp@users.sourceforge.net>
+- ff99f49dd8b749331fb527df92fd2b3483637375
+ Eliminate PATH_MAX usage
+ PATH_MAX is not defined on GNU Hurd and they have a good reason for
+it:
 
-* Tue Jan 5 2010 Siddhesh Poyarekar <siddheshp@users.sourceforge.net>
-- acea42f0bb643fbb96bc4368d273dfc25880ed61
- Merge ssh://ayttm.git.sourceforge.net/gitroot/ayttm/ayttm
- 
-* Tue Jan 5 2010 Siddhesh Poyarekar <siddheshp@users.sourceforge.net>
-- 278d162400d4fbabef2487161b38ee00edc38e8d
- Fixed some potential (and some real) buffer overflows
- 
-* Mon Jan 4 2010 Siddhesh Poyarekar <siddheshp@users.sourceforge.net>
-- ea5776523d9e20c8d993d8d80e15e6b522b316c2
- Sync with upstream libyahoo2
- * Got rid of the $$ line
- * Implemented BUZZ inside the library. Accessible as yahoo_send_buzz and ext_yahoo_got_buzz
- * Fixed "update yahoo address book" (yahoo_set_yab)
- * Fixed typo in buzz strcmp. Thanks Iwan Budi Kusnanto <iwan.b.kusnanto@gmail.com> for the patch
- * Initialize the random variable in yahoo_get_random
- * Throw an error in case of an invalid HTTP response instead of crashing out
- * More safety checks. Thanks A M <aelorean@gmail.com>
+http://www.gnu.org/software/hurd/community/gsoc/project_ideas/maxpath.html
 
-* Wed Dec 30 2009 Siddhesh Poyarekar <siddheshp@users.sourceforge.net>
-- 4633e926d9c792be2d51d5b1adadac2726609aa7
- Conversation window changes
- * Replaced chat_room.c with conversation.c in POTFILES.in
- * Updated translations
- * Removed keyboard accelerators; they don't work
- * Removed the stray local_user from the chat_window struct. Fixed
-  confusions caused by it
+To summarize the limits are all different and very vague, with most
+implementations choosind to set a limit on path components rather than
+the entire path. So avoid it and use your own logic.
 
-* Mon Dec 28 2009 Siddhesh Poyarekar <siddheshp@users.sourceforge.net>
-- c8b97454c317864c4dc7a4e78bc58dbb4f03afd6
- Merge /home/siddhesh/src/upstream/sandbox/ayttm
- 
-* Mon Dec 28 2009 Siddhesh Poyarekar <siddhesh@spoyarek.pnq.redhat.com>
-- 8967d2a6aa721f46f6800d71196f6cd546e33a25
- Completely reworked chat windows and rooms
- Introduced the concept of conversations which forms the base of
-all chat. The window and rooms then end up being merely a UI
-component. A lot of things are still broken:
-
- * Invitations and conferencing
- * A lot of buttons
- * Auto-reconnect of conversations
- * Button shortcuts
-
-The filters API has changed completely too. I've changed the code
-enough to get it to build and run for IRC. Yet to test on other
-protocols.
-
-Yes this should have been multiple commits. Sorry.
-
-* Mon Dec 28 2009 Siddhesh Poyarekar <siddhesh@spoyarek.pnq.redhat.com>
-- 0da643033e701d8a711d12b210d9f9334622b3bf
- Merge branch 'master' of github.com:siddhesh/ayttm
- 
-* Mon Dec 28 2009 Siddhesh Poyarekar <siddhesh@spoyarek.pnq.redhat.com>
-- 375aaf8a6573ef026d6c0911ae273eeba0448a89
- first commit
- 
-* Sun Dec 13 2009 Siddhesh Poyarekar <siddheshp@users.sourceforge.net>
-- ab46edf748b6c5a0f171534f6950929db4939ab3
- expat security fixes (CVE-2009-3560 CVE-2009-3720)
- * CVE-2009-3560: Return an XML_INVALID_TOKEN instead of abort()ing
-on receiving a malformed UTF8 sequence
- * CVE-2009-3720: Backported upstream expat fix
-
-* Mon Nov 30 2009 Siddhesh Poyarekar <siddheshp@users.sourceforge.net>
-- dd76a23e40139ff1ef685039933e549d8efa4230
- Sync with upstream libyahoo2
- * YMSG16 code Copyright change
- * File descriptor comparison
- * Avoid TRUE/FALSE. Use 1/0 instead
- * Removed $Id$
- * Minor formatting changes
-
-* Thu Nov 26 2009 Siddhesh Poyarekar <siddhesh@spoyarek.pnq.redhat.com>
-- a859e0f563edcc377d3fb7321938f8b3546cbf60
- Merge branch 'master' of git://ayttm.git.sourceforge.net/gitroot/ayttm/ayttm
- 
-* Thu Nov 26 2009 Siddhesh Poyarekar <siddheshp@users.sourceforge.net>
-- 699681d94be9263adcdb2e56f0f505bdb89b641a
- Bumped release number
- 
-* Thu Nov 26 2009 Siddhesh Poyarekar <siddheshp@users.sourceforge.net>
-- 1d1ccca6ba7ddfa0bc3f2e2d4d891f52aee0a6bf
- Updated TODO
- 
-* Thu Nov 26 2009 Siddhesh Poyarekar <siddheshp@users.sourceforge.net>
-- afc71367e2a764f4d0b2942c61317d436a8140e6
- IRC fixes and enhancements
- * Implemented KICK both ways
- * Fixed a problem with echoing our own messagins in the chat room
-
-* Wed Nov 25 2009 Siddhesh Poyarekar <siddheshp@users.sourceforge.net>
-- 6aab0ad9b78a0c8618bf2694c925cd03d580cf76
- Merge branch 'chatwindows'
- 
-* Wed Nov 25 2009 Siddhesh Poyarekar <siddheshp@users.sourceforge.net>
-- 50d331aa2d9b37cbd12820942b300cadbbdfc70b
- Updated TODO
- There already is buddy name completion if you select the autocomplete option
-I'm a retard.
-
-* Wed Nov 25 2009 Siddhesh Poyarekar <siddheshp@users.sourceforge.net>
-- f66eaabe788a36e167ea58db1a1e5bb7fdede897
- Remove the typing notification label in favour of a typing notification inside the chat window
- 
-* Wed Nov 25 2009 Siddhesh Poyarekar <siddheshp@users.sourceforge.net>
-- 959fa65c5fffe9013b6dc065c213e34f30d02dee
- More IRC fixes
- * Replaced strcasestr since it is a non-standard GNU extension
- * Packet dump when debugging is enabled
-
-* Wed Nov 25 2009 Siddhesh Poyarekar <siddheshp@users.sourceforge.net>
-- c8e755991788244a0abf6ab354716d90d5b2e0b7
- Control what we show in the chat room in irc
- 
-* Sat Nov 14 2009 Siddhesh Poyarekar <siddheshp@users.sourceforge.net>
-- 5a0bc739f98d87fd8b366dbb252fccf28bf7c679
- Updated *.po
- 
-* Sat Nov 14 2009 Siddhesh Poyarekar <siddheshp@users.sourceforge.net>
-- a16c97b238e28b2da93923274807513d2b81c187
- Bump release number
- 
-* Sat Nov 14 2009 Siddhesh Poyarekar <siddheshp@users.sourceforge.net>
-- 3c3bdacf42f4ed33ada28a6f61ee88093e139947
- multiple Internationalization related changes  - Added some files to be parsed for translation strings  - Concatenated some broken messages into a single message
- 
-* Sat Nov 14 2009 Siddhesh Poyarekar <siddheshp@users.sourceforge.net>
-- 8a7f28a3b0eec32819eae8a3f670931f36afdeb4
- Replace some more html stuff with display_notification
- 
-* Sat Nov 14 2009 Siddhesh Poyarekar <siddheshp@users.sourceforge.net>
-- aecadd6a9807239d6c52add4a73d76a92ec3270f
- Remove unnecessary autotranslate warning Remove warning that it will hang each time during translation since we no longer do that.
- 
-* Sat Nov 14 2009 Siddhesh Poyarekar <siddheshp@users.sourceforge.net>
-- 933b64fa5b3a93e28b398b8fef2474e289d96673
- Remove C++ style comments from C code
- 
-* Fri Nov 6 2009 Siddhesh Poyarekar <siddheshp@users.sourceforge.net>
-- 3eb83c5e26b4ffcfbab51baf17eb5d2befd89ba5
- Fixed broken lex configure check
- 
-* Fri Nov 6 2009 Siddhesh Poyarekar <siddhesh@spoyarek.pnq.redhat.com>
-- 195c221061f1e25ffb8c222d3976e2462e6a3dfe
- Fixed broken lex check in configure
- 
-* Fri Nov 6 2009 Siddhesh Poyarekar <siddheshp@users.sourceforge.net>
-- 705ecb0a527a9873aeb77e1561c72c06d4038214
- Updated translations and bump release number
- 
-* Fri Nov 6 2009 Siddhesh Poyarekar <siddheshp@users.sourceforge.net>
-- b69c3926f43760dd3776db97ec0fc0ac649a7174
- Increase line spacing between messages by a bit
- 
-* Fri Nov 6 2009 Siddhesh Poyarekar <siddheshp@users.sourceforge.net>
-- 9fa1bbc28fb8f837ee98206a00e980f8c1949703
- Removed obsolete 3rdperson chat room stuff with notifications
- The irc module changes will also act as an example of how this can be used.
-
-* Fri Nov 6 2009 Siddhesh Poyarekar <siddheshp@users.sourceforge.net>
-- 00f27847fd311a548050d05dcadcf3f584fbbfd4
- Newline after notification
- 
-* Fri Nov 6 2009 Siddhesh Poyarekar <siddheshp@users.sourceforge.net>
-- ae82d6aedceea662c1a8f1d7865e2ded811d3b19
- Fail on indirect linking and add link to libX11 since we use XParseGeometry.
+* Fri Feb 26 2010 Siddhesh Poyarekar <siddheshp@users.sourceforge.net>
+- 36c53ce5baef17e7dae9a7b8c5be7f96fa616633
+ Don't crash if you don't find a local account for the chat window
  
