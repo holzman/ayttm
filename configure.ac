@@ -294,11 +294,11 @@ else
 	AC_MSG_WARN([Unable to find openssl, you won't have MSN and yahoo plugins. Nor will you get to use SSL with jabber])
 fi
 
-# Check for libyahoo2
-AC_CHECK_LIB(yahoo2, yahoo_init,, [enable_yahoo="no"];AC_MSG_WARN([libyahoo2 is not installed. Yahoo protocol module will not be built]))
-
 LIBS=$ac_check_lib_save_LIBS 
 CFLAGS=$ac_check_lib_save_CFLAGS
+
+# Check for libyahoo2
+AC_CHECK_LIB(yahoo2, yahoo_init,, [enable_yahoo="no"];AC_MSG_WARN([libyahoo2 is not installed. Yahoo protocol module will not be built]))
 
 GTK_CFLAGS="$GTK_CFLAGS" # -DGTK_DISABLE_DEPRECATED"
 EB_CFLAGS="$EB_CFLAGS $GLIB_CFLAGS $GTK_CFLAGS"
@@ -345,8 +345,10 @@ fi
 
 AC_CHECK_HEADER(X11/xpm.h, [have_xpm=yes], [have_xpm=no], )
 
+enable_smileys="no"
 if test "$have_xpm" = yes; then
 	AC_DEFINE(HAVE_XPM, , Define if we have XPM file support)
+	enable_smileys="yes"
 else
 	AC_MSG_RESULT([Smiley support will not be built. Install the libxpm-dev package to get smiley support])
 fi
@@ -406,6 +408,9 @@ if test "$enable_workwizu" = yes; then
 	 echo "http://www.swox.com/gmp/"
 	 enable_workwizu=no;
 	fi;
+fi
+if test "$enable_smileys" != no; then
+	OPTIONAL_PLUG_DIR="$OPTIONAL_PLUG_DIR smileys"
 fi
 if test "$enable_yahoo" != no; then
 	OPTIONAL_PLUG_DIR="$OPTIONAL_PLUG_DIR yahoo2"
