@@ -30,7 +30,7 @@
 #include "status.h"
 #include "ayttm_tray.h"
 #include "intl.h"
-#include "prefs.h"
+#include "gtk/prefs_window.h"
 #include "away_window.h"
 
 GtkWidget *popup_menu = NULL;
@@ -42,7 +42,7 @@ GtkWidget *quit_menu_item = NULL;
 
 static void build_prefs_callback(GtkWidget *widget, gpointer stats)
 {
-	ayttm_prefs_show_window(0);
+	ay_prefs_window_open(PREFSET_CHAT);
 }
 
 /* Show or Hide the main status window */

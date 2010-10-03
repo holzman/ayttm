@@ -33,110 +33,14 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+	typedef struct _AyModulePrefs {
+		LList *services;
+		LList *filters;
+		LList *utilities;
+		LList *smileys;
+		LList *importers;
+	} AyModulePrefs;
 
-	typedef struct {
-		const char *module_type;
-		const char *module_name;
-		const char *description;
-		const char *loaded_status;
-		const char *version;
-		const char *date;
-		const char *file_name;
-		const char *status_desc;
-
-		int is_loaded;
-
-		input_list *pref_list;
-	} t_module_pref;
-
-	typedef struct {
-		const char *screen_name;
-		int service_id;
-		int is_connected;
-		input_list *pref_list;
-	} t_account_pref;
-
-	struct prefs {
-		struct chat {
-			int do_ignore_unknown;
-			int do_raise_window;
-			char regex_pattern[MAX_PREF_LEN];
-			int do_send_idle_time;
-			int do_convo_timestamp;
-			int do_smiley;
-			int do_ignore_fore;
-			int do_ignore_back;
-			int do_ignore_font;
-			int do_auto_complete;
-			char font_face[MAX_PREF_LEN];
-
-#ifdef HAVE_LIBENCHANT
-			int do_spell_checking;
-			char spell_dictionary[MAX_PREF_LEN];
-#endif
-		} chat;
-
-		struct logging {
-			int do_logging;
-			int do_restore_last_conv;
-		} logging;
-
-		struct tabs {
-			int do_tabbed_chat;
-			int do_tabbed_chat_orient;	/* Tab Orientation:  0 => bottom, 1 => top, 2=> left, 3 => right */
-			char accel_prev_tab[MAX_PREF_LEN];
-			char accel_next_tab[MAX_PREF_LEN];
-		} tabs;
-
-		struct sound {
-			int do_no_sound_when_away;
-			int do_no_sound_for_ignore;
-			int do_online_sound;
-			int do_play_send;
-			int do_play_first;
-			int do_play_receive;
-
-			char BuddyArriveFilename[MAX_PREF_LEN];
-			char BuddyAwayFilename[MAX_PREF_LEN];
-			char BuddyLeaveFilename[MAX_PREF_LEN];
-			char SendFilename[MAX_PREF_LEN];
-			char ReceiveFilename[MAX_PREF_LEN];
-			char FirstMsgFilename[MAX_PREF_LEN];
-
-			double SoundVolume;
-		} sound;
-
-		struct misc {
-			int do_ayttm_debug;
-			int do_show_tooltips;
-			int use_alternate_browser;
-			int do_version_check;
-			int usercount_window_seen;
-			char alternate_browser[MAX_PREF_LEN];
-		} general;
-
-		struct advanced {
-			int proxy_type;
-			char proxy_host[MAX_PREF_LEN];
-			int proxy_port;
-
-			int do_proxy_auth;
-			char proxy_user[MAX_PREF_LEN];
-			char proxy_password[MAX_PREF_LEN];
-
-			int use_recoding;
-			char local_encoding[MAX_PREF_LEN];
-			char remote_encoding[MAX_PREF_LEN];
-		} advanced;
-
-		struct module {
-			LList *module_info;
-		} module;
-
-		struct account_p {
-			LList *account_info;
-		} account;
-	};
 
 	void ayttm_prefs_init(void);
 #if defined(__MINGW32__) && defined(__IN_PLUGIN__)
@@ -150,14 +54,6 @@ extern "C" {
 	void ayttm_prefs_write(void);
 
 	void ayttm_prefs_show_window(int pagenum);
-	t_module_pref *ayttm_prefs_find_module_by_name(const struct prefs
-		*inPrefs, const char *inName);
-	int ayttm_prefs_unload_module(t_module_pref *ioPrefs);
-	int ayttm_prefs_load_module(t_module_pref *ioPrefs);
-	void ayttm_prefs_connect_account(t_account_pref *ioPrefs);
-	void ayttm_prefs_disconnect_account(t_account_pref *ioPrefs);
-	void ayttm_prefs_apply(struct prefs *inPrefs);
-	void ayttm_prefs_cancel(struct prefs *inPrefs);
 
 #if defined(__MINGW32__) && defined(__IN_PLUGIN__)
 	 __declspec(dllimport) void *GetPref(const char *key);
@@ -173,10 +69,13 @@ extern "C" {
 	void fSetLocalPref(const char *key, float data);
 	float fGetLocalPref(const char *key);
 
-	void cSetLocalPref(const char *key, char *data);
+	void cSetLocalPref(const char *key, const char *data);
 	char *cGetLocalPref(const char *key);
 
 	void save_account_info(const char *service, LList *pairs);
+
+	AyModulePrefs *ay_prefs_sift_modules(void);
+	void ay_prefs_modules_free(AyModulePrefs *modules);
 
 #ifdef __cplusplus
 }

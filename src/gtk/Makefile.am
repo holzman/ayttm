@@ -3,10 +3,10 @@ noinst_LTLIBRARIES = libayttmgtk.la
 libayttmgtk_la_SOURCES = \
 	html_text_buffer.c about_window.c \
 	gtkspell.c gtkutils.c gtk_tree_view_tooltip.c \
-	log_window.C prefs_window.C
+	log_window.C prefs_window.c
 
 noinst_HEADERS = html_text_buffer.h gtkspell.h gtkutils.h \
-		 gtk_tree_view_tooltip.h
+		 gtk_tree_view_tooltip.h prefs_window.h
 
 INCLUDES = -I.. $(GTK_CFLAGS)
 AM_CXXFLAGS = $(CFLAGS)
