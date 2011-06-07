@@ -63,7 +63,6 @@
 #include "gtk/gtkutils.h"
 #include "gtk/html_text_buffer.h"
 #include "gtk/gtk_tree_view_tooltip.h"
-#include "gtk/prefs_window.h"
 
 #include "pixmaps/login_icon.xpm"
 #include "pixmaps/blank_icon.xpm"
@@ -834,12 +833,12 @@ static void eb_add_accounts(GtkWidget *widget, gpointer stats)
 
 static void eb_edit_accounts(GtkWidget *widget, gpointer stats)
 {
-	ay_prefs_window_open(PREFSET_ACCOUNTS);
+	ayttm_prefs_show_window(4);
 }
 
 static void build_prefs_callback(GtkWidget *widget, gpointer stats)
 {
-	ay_prefs_window_open(PREFSET_CHAT);
+	ayttm_prefs_show_window(0);
 }
 
 static void launch_group_chat(GtkWidget *widget, gpointer userdata)
