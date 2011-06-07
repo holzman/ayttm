@@ -652,7 +652,8 @@ static void do_invite_window(GtkWidget *source, gpointer data)
 
 	gtk_window_set_resizable(GTK_WINDOW(cw->invite_window), FALSE);
 
-	box = gtk_dialog_get_content_area(GTK_DIALOG(cw->invite_window));
+	box = GTK_DIALOG(GTK_DIALOG(cw->invite_window))->vbox;
+
 	gtk_box_pack_start(GTK_BOX(box), label, FALSE, FALSE, 5);
 	gtk_box_pack_start(GTK_BOX(box), table, TRUE, TRUE, 0);
 
@@ -752,9 +753,9 @@ static gboolean handle_focus(GtkWidget *widget, GdkEventFocus *event,
 		chatpane = gtk_notebook_get_nth_page(GTK_NOTEBOOK(cw->notebook),
 			gtk_notebook_get_current_page(GTK_NOTEBOOK(cw->notebook)));
 		cw = g_object_get_data(G_OBJECT(chatpane), "cw_object");
-
 	if (cw)
 		gtk_widget_grab_focus(cw->entry);
+
 
 	return FALSE;
 }
@@ -765,6 +766,11 @@ static gboolean handle_click(GtkWidget *widget, GdkEventButton *event,
 	gpointer userdata)
 {
 	chat_window *cw = (chat_window *)userdata;
+	GtkWidget *window, *label;
+
+	window = cw->window;
+	gtk_window_set_urgency_hint(GTK_WINDOW(window), FALSE);
+	gtk_window_set_title(GTK_WINDOW(window), cw->conv->name);
 
 	if (event->type == GDK_BUTTON_PRESS && event->button == 3) {
 		GtkWidget *menu, *button;
@@ -1374,6 +1380,7 @@ void ay_chat_window_set_name(chat_window *cw)
 			conv->local_user->handle);
 	else
 		cw->name = g_strdup(conv->name);
+
 }
 
 static void layout_chatwindow(chat_window *cw, GtkWidget *vbox,
@@ -1452,9 +1459,17 @@ static void layout_chatwindow(chat_window *cw, GtkWidget *vbox,
 
 			/* Wonder why we put cw here? It's because that is what
 			 * is being put into chat_window_list */
-			g_signal_connect(tab_cw->window, "focus-in-event",
+			g_signal_connect(cw->window, "focus-in-event",
 				G_CALLBACK(handle_focus),
 				cw);
+
+                        g_signal_connect(cw->window, "focus", G_CALLBACK(handle_focus), cw);
+                        g_signal_connect(cw->window, "focus-in-event", G_CALLBACK(handle_focus), cw);
+                        g_signal_connect(cw->window, "focus-out-event", G_CALLBACK(handle_focus), cw);
+
+                        g_signal_connect(tab_cw->window, "focus", G_CALLBACK(handle_focus), cw);
+                        g_signal_connect(tab_cw->window, "focus-in-event", G_CALLBACK(handle_focus), cw);
+                        g_signal_connect(tab_cw->window, "focus-out-event", G_CALLBACK(handle_focus), cw);
 
 			if (origpane)
 				add_page_with_pane(tab_cw, origpane, 
@@ -1695,7 +1710,22 @@ chat_window *ay_chat_window_new(Conversation *conv)
 	gtk_box_pack_start(GTK_BOX(vbox), resize_bar, TRUE, TRUE, 5);
 	gtk_widget_show(resize_bar);
 
+	g_signal_connect(cw->window, "button-press-event",
+		G_CALLBACK(handle_click), cw);
+
+	g_signal_connect(cw->notebook, "button-press-event",
+		G_CALLBACK(handle_click), cw);
+
+	g_signal_connect(cw->notebook_child, "button-press-event",
+		G_CALLBACK(handle_click), cw);
+
 	g_signal_connect(cw->chat, "button-press-event",
+		G_CALLBACK(handle_click), cw);
+
+	g_signal_connect(cw->entry, "button-press-event",
+		G_CALLBACK(handle_click), cw);
+
+	g_signal_connect(cw->pane, "button-press-event",
 		G_CALLBACK(handle_click), cw);
 
 	focus_chain = g_list_append(focus_chain, cw->entry);
@@ -1716,7 +1746,7 @@ chat_window *ay_chat_window_new(Conversation *conv)
 #define TOOLBAR_APPEND(tool_btn,txt,icn,cbk,cwx) {\
 	tool_btn = GTK_WIDGET(gtk_tool_button_new(icn,txt));\
 	gtk_toolbar_insert(GTK_TOOLBAR(toolbar), GTK_TOOL_ITEM(tool_btn),-1);\
-	gtk_tool_item_set_tooltip_text(GTK_TOOL_ITEM(tool_btn),txt);\
+	gtk_tool_item_set_tooltip(GTK_TOOL_ITEM(tool_btn), gtk_tooltips_new(), txt, ""); \
 	g_signal_connect(tool_btn,"clicked",G_CALLBACK(cbk),cwx); \
 	gtk_widget_show(tool_btn); }
 
@@ -1725,7 +1755,7 @@ chat_window *ay_chat_window_new(Conversation *conv)
 	gtk_tool_button_set_icon_widget(GTK_TOOL_BUTTON(tool_btn), icn);\
 	gtk_tool_button_set_label(GTK_TOOL_BUTTON(tool_btn), txt);\
 	gtk_toolbar_insert(GTK_TOOLBAR(toolbar), GTK_TOOL_ITEM(tool_btn), -1);\
-	gtk_tool_item_set_tooltip_text(GTK_TOOL_ITEM(tool_btn), tip);\
+	gtk_tool_item_set_tooltip(GTK_TOOL_ITEM(tool_btn), gtk_tooltips_new(), tip, ""); \
 	g_signal_connect(tool_btn, "clicked", G_CALLBACK(cbk) ,cwx);\
         gtk_widget_show(tool_btn); }
 
@@ -1829,8 +1859,9 @@ chat_window *ay_chat_window_new(Conversation *conv)
 	gtk_toolbar_insert(GTK_TOOLBAR(toolbar),
 			   GTK_TOOL_ITEM(cw->sound_button), -1);
 
-	gtk_tool_item_set_tooltip_text(GTK_TOOL_ITEM(cw->sound_button),
-				       _("Enable Sound (Ctrl+S)"));
+	gtk_tool_item_set_tooltip(GTK_TOOL_ITEM(cw->sound_button),
+				  gtk_tooltips_new(),
+				  _("Enable Sound (Ctrl+S)"), "");
 
 	g_signal_connect(cw->sound_button, "clicked",
 			 G_CALLBACK(set_sound_callback), cw);
@@ -1929,6 +1960,7 @@ chat_window *ay_chat_window_new(Conversation *conv)
 	g_signal_connect(vbox, "destroy", G_CALLBACK(destroy_event), cw);
 
 	layout_chatwindow(cw, vbox, accel_group);
+	gtk_window_set_title(GTK_WINDOW(cw->window), conv->name);
 
 	return cw;
 }
@@ -2264,7 +2296,7 @@ void open_join_chat_window()
 
 	gtk_window_set_resizable(GTK_WINDOW(join_chat_window), FALSE);
 
-	box = gtk_dialog_get_content_area(GTK_DIALOG(join_chat_window));
+	box = GTK_DIALOG(GTK_DIALOG(join_chat_window)->vbox);
 	gtk_box_pack_start(GTK_BOX(box), table, TRUE, TRUE, 0);
 
 	button = gtkut_stock_button_new_with_label(_("Join"), GTK_STOCK_OK);

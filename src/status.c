@@ -390,6 +390,14 @@ static void create_log_window(void)
 	g_signal_connect(status_message_window, "delete-event",
 		G_CALLBACK(gtk_widget_hide_on_delete), NULL);
 
+	g_signal_connect(statuswindow, "delete-event", 
+			 G_CALLBACK(ayttm_end_app),
+			 NULL);
+
+	/*	g_signal_connect(status_message_window, "delete-event",
+		G_CALLBACK(ayttm_end_app), NULL);
+	*/
+
 	gtk_widget_realize(status_message_window);
 	gtk_widget_realize(status_message_swindow);
 	gtk_widget_realize(status_message_window_text);
@@ -1782,6 +1790,7 @@ void update_contact_window_length()
 	int h, w;
 	h = iGetLocalPref("length_contact_window");
 	w = iGetLocalPref("width_contact_window");
+        printf("ucwl: width set to %d", w);
 	if (h == 0)
 		h = 300;
 	if (w == 0)
@@ -1846,8 +1855,11 @@ static void drag_motion_callback(GtkWidget *widget, GdkDragContext *c, guint x,
 
 	gtk_tree_view_get_visible_rect(GTK_TREE_VIEW(widget), &rectangle);
 
-	gtk_tree_view_convert_widget_to_bin_window_coords(GTK_TREE_VIEW(widget),
-		x, y, &wx, &wy);
+	/*	gtk_tree_view_convert_widget_to_bin_window_coords(GTK_TREE_VIEW(widget),
+	  x, y, &wx, &wy);*/
+
+	gtk_tree_view_widget_to_tree_coords(GTK_TREE_VIEW(widget),
+					    x, y, &wx, &wy);
 
 	selection = gtk_tree_view_get_selection(GTK_TREE_VIEW(widget));
 	valid = gtk_tree_view_get_path_at_pos(GTK_TREE_VIEW(widget), x, y,
