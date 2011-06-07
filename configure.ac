@@ -231,8 +231,8 @@ AM_PATH_GLIB_2_0( , [AC_DEFINE(HAVE_GLIB, 1, [Define if you have glib])],
 	AC_MSG_ERROR([Unable to find glib-devel version 2.0.0 or higher]))
 
 AM_PATH_GTK_2_0( 2.14.0, [AC_DEFINE(HAVE_GTK_2_14, 1, [Define if you have gtk])],
-	[AM_PATH_GTK_2_0( 2.12.0, [AC_DEFINE(HAVE_GTK, 1, [Define if you have gtk])],
-		AC_MSG_ERROR([Unable to find gtk-devel version 2.12.0 or higher]))])
+	[AM_PATH_GTK_2_0( 2.10.0, [AC_DEFINE(HAVE_GTK, 1, [Define if you have gtk])],
+		AC_MSG_ERROR([Unable to find gtk-devel version 2.10.0 or higher]))])
 
 AC_ARG_ENABLE(webcam, AC_HELP_STRING([--disable-webcam],
 		[Do not build webcam support]))
