@@ -678,7 +678,7 @@ void ayttm_prefs_init(void)
 
 	/* window positions, etc */
 	iSetLocalPref("length_contact_window", 256);
-	iSetLocalPref("width_contact_window", 150);
+	iSetLocalPref("width_contact_window", 10);
 	iSetLocalPref("status_show_level", 2);
 
 	/* chat */
