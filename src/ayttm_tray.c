@@ -132,14 +132,5 @@ void set_tray_menu_sensitive(gboolean online, unsigned int account_count)
 /* Load the tray icon */
 void ay_load_tray_icon(GdkPixbuf *default_icon)
 {
-	ayttm_status_icon = gtk_status_icon_new_from_pixbuf(default_icon);
-	gtk_status_icon_set_tooltip(ayttm_status_icon, "Ayttm");
-
-	build_popup_menu();
 	eb_status_window();
-
-	g_signal_connect(ayttm_status_icon, "activate",
-		G_CALLBACK(icon_activate), NULL);
-	g_signal_connect(ayttm_status_icon, "popup-menu",
-		G_CALLBACK(show_popup), NULL);
 }

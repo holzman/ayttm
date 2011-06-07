@@ -749,7 +749,7 @@ void ay_edit_local_accounts(void)
 
 #define TOOLBAR_APPEND(titem,stock,tip,callback,cb_data) { \
 	titem = gtk_tool_button_new_from_stock(stock); \
-	gtk_tool_item_set_tooltip_text(titem, tip); \
+	gtk_tool_item_set_tooltip(titem, gtk_tooltips_new(), tip, "");	\
 	g_signal_connect(titem, "clicked", G_CALLBACK(callback), cb_data); \
 	gtk_widget_show(GTK_WIDGET(titem)); \
 	gtk_toolbar_insert(GTK_TOOLBAR(toolbar), titem, -1); \
