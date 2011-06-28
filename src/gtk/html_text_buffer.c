@@ -755,7 +755,7 @@ void html_text_buffer_append(GtkTextView *text_view, char *txt, int ignore)
 
 	GtkTextBuffer *buffer = gtk_text_view_get_buffer(text_view);
 
-	if (strcasestr(text, "<br>")) {
+	if (0 && strcasestr(text, "<br>")) {
 		char *c = text;
 		while ((c = strchr(text, '\n')) != 0)
 			*c = ' ';
