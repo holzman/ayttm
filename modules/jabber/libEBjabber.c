@@ -897,12 +897,14 @@ void j_on_packet_handler(jconn conn, jpacket packet)
 		x = xmlnode_get_tag(packet->x, "x");
 		if (x) {
 			type = xmlnode_get_attrib(x, "xmlns");
-			eb_debug(DBG_JBR, "type: %s\n", type);
-			if (!strcmp(type, "jabber:x:event")) {
-				xmlnode comp = xmlnode_get_tag(x, "composing");
-				char *tfrom = strdup(from);
-				JABBERBuddy_typing(JConn, tfrom, comp ? 1 : 0);
-				free(tfrom);
+			if (type) {
+			  eb_debug(DBG_JBR, "type: %s\n", type);
+			  if (!strcmp(type, "jabber:x:event")) {
+			       xmlnode comp = xmlnode_get_tag(x, "composing");
+			       char *tfrom = strdup(from);
+			       JABBERBuddy_typing(JConn, tfrom, comp ? 1 : 0);
+			       free(tfrom);
+			  }
 			}
 		}
 		x = xmlnode_get_tag(packet->x, "subject");
